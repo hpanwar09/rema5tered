@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const today = new Date().toLocaleDateString('en-US', {
+  weekday: 'long',
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+---
+
+<Layout title="Guess the Movie — REMA5TERED">
+  <main class="max-w-2xl mx-auto px-6 pt-24 pb-32">
+    <a href="/" class="text-surface-500 hover:text-accent text-sm font-display tracking-wide transition-colors duration-300 mb-12 inline-block">
+      ← Back
+    </a>
+
+    <header class="mb-16">
+      <h1 class="font-display font-bold text-fluid-2xl text-surface-50 mb-3">
+        Guess the Movie
+      </h1>
+      <p class="text-surface-500 text-sm font-display">{today}</p>
+    </header>
+
+    <div class="rounded-lg border border-surface-800 bg-surface-900/50 p-12 text-center">
+      <p class="text-surface-400 text-fluid-base mb-4">🎬</p>
+      <p class="text-surface-400">
+        Daily puzzle coming soon.
+      </p>
+      <p class="text-surface-600 text-sm mt-2">
+        Pixelated posters. Five guesses. Same for everyone.
+      </p>
+    </div>
+  </main>
+</Layout>

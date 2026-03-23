@@ -1,0 +1,22 @@
+# deps
+node_modules/
+
+# build
+dist/
+.vercel/
+.astro/
+
+# env
+.env
+.env.local
+.env.production
+
+# os
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+*.swp
+*.swo
