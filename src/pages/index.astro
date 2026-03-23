@@ -1,108 +1,31 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import SideNav from "../components/SideNav.astro";
 ---
 
-<Layout title="REMA5TERED — Movies, Reimagined">
-  <main class="max-w-3xl mx-auto px-6 pt-24 pb-32">
+<Layout title="what should i watch?">
+    {/* Full-screen background image with dark overlay */}
+    <div class="fixed inset-0 -z-10">
+        <img src="/hero-bg.jpg" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-surface-950/90"></div>
+    </div>
 
-    {/* Hero — Impeccable: asymmetric, not centered hero blob */}
-    <header class="mb-24">
-      <p
-        class="text-accent font-display text-sm tracking-widest uppercase mb-6 opacity-0 animate-fade-in"
-        style="animation-delay: 0ms;"
-      >
-        A personal film companion
-      </p>
-      <h1
-        class="font-display font-bold text-fluid-3xl leading-[1.05] text-surface-50 mb-8 opacity-0 animate-slide-up"
-        style="animation-delay: 100ms;"
-      >
-        Don't just watch movies.<br />
-        <span class="text-accent">Experience</span> them.
-      </h1>
-      <p
-        class="text-fluid-base text-surface-400 max-w-lg leading-relaxed opacity-0 animate-slide-up"
-        style="animation-delay: 200ms;"
-      >
-        Daily poster puzzles. Personalized picks when you can't decide.
-        Your Letterboxd diary, beautifully rendered.
-      </p>
-    </header>
+    <SideNav />
 
-    {/* Features — Impeccable: NO cards wrapping everything. Use spacing + typography for grouping */}
-    <nav class="space-y-16 mb-32">
-      <a
-        href="/guess"
-        class="group block opacity-0 animate-slide-up"
-        style="animation-delay: 300ms;"
-      >
-        <div class="flex items-baseline justify-between mb-3">
-          <h2 class="font-display text-fluid-xl font-semibold text-surface-100 group-hover:text-accent transition-colors duration-300">
-            Guess the Movie
-          </h2>
-          <span class="text-surface-600 text-sm font-display tracking-wide group-hover:text-accent transition-colors duration-300">
-            Daily Puzzle →
-          </span>
+    {/* Quote — centered on page */}
+  <main class="min-h-screen flex items-center justify-center px-6 pt-24">
+        <div class="max-w-2xl">
+            <blockquote
+                class="font-display font-medium text-fluid-xl leading-relaxed text-surface-300 italic opacity-0 animate-slide-up"
+                style="animation-delay: 500ms;"
+            >
+                so do you want to take a leap of faith or become an old man
+                filled with regrets...waiting to die alone?
+                <span
+                    class="block text-right text-sm text-surface-500 mt-4 not-italic"
+                    >— Inception, 2010</span
+                >
+            </blockquote>
         </div>
-        <p class="text-surface-400 leading-relaxed max-w-md">
-          A pixelated poster. Five guesses. Same challenge for everyone, every day.
-          How fast can you name it?
-        </p>
-        <div class="mt-4 h-px bg-gradient-to-r from-surface-800 to-transparent"></div>
-      </a>
-
-      <a
-        href="/recommend"
-        class="group block opacity-0 animate-slide-up"
-        style="animation-delay: 400ms;"
-      >
-        <div class="flex items-baseline justify-between mb-3">
-          <h2 class="font-display text-fluid-xl font-semibold text-surface-100 group-hover:text-accent transition-colors duration-300">
-            What Should I Watch?
-          </h2>
-          <span class="text-surface-600 text-sm font-display tracking-wide group-hover:text-accent transition-colors duration-300">
-            Recommender →
-          </span>
-        </div>
-        <p class="text-surface-400 leading-relaxed max-w-md">
-          Tell us your mood or name a movie you loved.
-          We'll find your next obsession.
-        </p>
-        <div class="mt-4 h-px bg-gradient-to-r from-surface-800 to-transparent"></div>
-      </a>
-
-      <a
-        href="/watching"
-        class="group block opacity-0 animate-slide-up"
-        style="animation-delay: 500ms;"
-      >
-        <div class="flex items-baseline justify-between mb-3">
-          <h2 class="font-display text-fluid-xl font-semibold text-surface-100 group-hover:text-accent transition-colors duration-300">
-            Recently Watched
-          </h2>
-          <span class="text-surface-600 text-sm font-display tracking-wide group-hover:text-accent transition-colors duration-300">
-            Film Diary →
-          </span>
-        </div>
-        <p class="text-surface-400 leading-relaxed max-w-md">
-          My Letterboxd diary, live. What I've been watching, rating,
-          and occasionally roasting.
-        </p>
-        <div class="mt-4 h-px bg-gradient-to-r from-surface-800 to-transparent"></div>
-      </a>
-    </nav>
-
-    {/* Footer — minimal */}
-    <footer
-      class="text-surface-600 text-sm opacity-0 animate-fade-in"
-      style="animation-delay: 600ms;"
-    >
-      <p>
-        Built by <a href="https://letterboxd.com/REMA5TERED/" class="text-surface-400 hover:text-accent transition-colors duration-300">REMA5TERED</a>
-        &middot; Powered by <a href="https://www.themoviedb.org/" class="text-surface-400 hover:text-accent transition-colors duration-300">TMDB</a>
-        &amp; <a href="https://letterboxd.com/" class="text-surface-400 hover:text-accent transition-colors duration-300">Letterboxd</a>
-      </p>
-    </footer>
-
-  </main>
+    </main>
 </Layout>

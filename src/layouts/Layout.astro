@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+
 interface Props {
   title: string;
   description?: string;
@@ -21,8 +23,9 @@ const { title, description = "Your personal movie companion — daily puzzles, r
       rel="stylesheet"
     />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
-  <body class="bg-surface-950 text-surface-200 font-sans min-h-screen">
+  <body class="bg-surface-950 text-surface-200 font-sans min-h-screen" transition:animate="fade">
     <slot />
   </body>
 </html>
