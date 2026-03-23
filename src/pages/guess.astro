@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SideNav from '../components/SideNav.astro';
 
 const today = new Date().toLocaleDateString('en-US', {
   weekday: 'long',
@@ -9,12 +10,10 @@ const today = new Date().toLocaleDateString('en-US', {
 });
 ---
 
-<Layout title="Guess the Movie — REMA5TERED">
-  <main class="max-w-2xl mx-auto px-6 pt-24 pb-32">
-    <a href="/" class="text-surface-500 hover:text-accent text-sm font-display tracking-wide transition-colors duration-300 mb-12 inline-block">
-      ← Back
-    </a>
+<Layout title="what should i watch?">
+  <SideNav />
 
+  <main class="max-w-4xl mx-auto px-6 pt-24 pb-32">
     <header class="mb-16">
       <h1 class="font-display font-bold text-fluid-2xl text-surface-50 mb-3">
         Guess the Movie

@@ -1,28 +1,81 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SideNav from '../components/SideNav.astro';
+import { fetchLetterboxdFeed } from '../lib/letterboxd';
+
+const username = import.meta.env.LETTERBOXD_USERNAME || 'REMA5TERED';
+
+let films: Awaited<ReturnType<typeof fetchLetterboxdFeed>> = [];
+let error: string | null = null;
+
+try {
+  films = await fetchLetterboxdFeed(username);
+} catch (e) {
+  error = e instanceof Error ? e.message : 'Failed to load feed';
+}
+
+// Cache for 30 minutes, serve stale for 1 hour while revalidating
+Astro.response.headers.set('Cache-Control', 'public, s-maxage=1800, stale-while-revalidate=3600');
 ---
 
-<Layout title="Recently Watched — REMA5TERED">
-  <main class="max-w-2xl mx-auto px-6 pt-24 pb-32">
-    <a href="/" class="text-surface-500 hover:text-accent text-sm font-display tracking-wide transition-colors duration-300 mb-12 inline-block">
-      ← Back
-    </a>
+<Layout title="what should i watch?">
+  <SideNav />
 
-    <header class="mb-16">
-      <h1 class="font-display font-bold text-fluid-2xl text-surface-50 mb-3">
-        Recently Watched
+  <div class="min-h-screen flex flex-col items-center justify-center">
+    <header class="w-full max-w-4xl px-6 pt-8 pb-6 flex items-baseline justify-between">
+      <h1 class="font-display font-bold text-fluid-md text-surface-50">
+        what i watched recently
       </h1>
-      <p class="text-surface-500 text-sm">Live from my Letterboxd diary.</p>
+      <a
+        href={`https://letterboxd.com/${username}/`}
+        class="text-surface-600 hover:text-accent text-sm font-display tracking-wide transition-colors duration-300"
+        target="_blank"
+        rel="noopener"
+      >
+        my letterboxd
+      </a>
     </header>
 
-    <div class="rounded-lg border border-surface-800 bg-surface-900/50 p-12 text-center">
-      <p class="text-surface-400 text-fluid-base mb-4">🎥</p>
-      <p class="text-surface-400">
-        Watch diary coming soon.
-      </p>
-      <p class="text-surface-600 text-sm mt-2">
-        Posters, ratings, and hot takes — straight from Letterboxd.
-      </p>
-    </div>
-  </main>
+    {error ? (
+      <div class="px-6 text-ember text-sm">{error}</div>
+    ) : (
+      <div class="w-full max-w-4xl overflow-x-auto overflow-y-hidden scrollbar-hide px-6">
+        <div class="flex gap-3 pb-8 h-[35vh] items-stretch">
+          {films.map((film, i) => (
+            <a
+              href={film.filmPageUrl}
+              target="_blank"
+              rel="noopener"
+              class="group flex-shrink-0 relative opacity-0 animate-fade-in"
+              style={`animation-delay: ${Math.min(i * 40, 500)}ms;`}
+            >
+              {film.posterUrl ? (
+                <img
+                  src={film.posterUrl}
+                  alt={`${film.title} (${film.year})`}
+                  loading={i < 8 ? 'eager' : 'lazy'}
+                  class="h-full w-auto rounded-lg object-cover shadow-lg shadow-surface-950/60 group-hover:shadow-xl group-hover:shadow-accent/15 group-hover:scale-[1.02] transition-all duration-300 ease-out"
+                />
+              ) : (
+                <div class="h-full aspect-[2/3] rounded-lg bg-surface-800 flex items-center justify-center text-surface-600 text-4xl">
+                  🎬
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+      <p class="text-surface-600 text-xs font-display mt-1 px-6">← scroll →</p>
+    )}
+  </div>
 </Layout>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>

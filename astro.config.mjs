@@ -14,4 +14,9 @@ export default defineConfig({
     host: 'whatshouldiwatch.test',
     port: 4321,
   },
+  vite: {
+    server: {
+      allowedHosts: ['whatshouldiwatch.test'],
+    },
+  },
 });
