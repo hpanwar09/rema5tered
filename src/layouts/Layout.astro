@@ -6,7 +6,8 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Your personal movie companion — daily puzzles, recommendations, and your watch diary." } = Astro.props;
+const { title, description = 'Your personal movie companion — daily puzzles, recommendations, and your watch diary.' } =
+  Astro.props;
 ---
 
 <!doctype html>
@@ -33,7 +34,7 @@ const { title, description = "Your personal movie companion — daily puzzles, r
 <style is:global>
   /* Impeccable: tinted selections, not default blue */
   ::selection {
-    background-color: rgba(224, 122, 47, 0.3);
+    background-color: rgba(230, 57, 70, 0.3);
     color: #faf9f7;
   }
 

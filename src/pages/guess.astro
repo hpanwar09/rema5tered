@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SideNav from '../components/SideNav.astro';
+import GuessTabs from '../components/GuessTabs';
 
 const today = new Date().toLocaleDateString('en-US', {
-  weekday: 'long',
   month: 'long',
   day: 'numeric',
   year: 'numeric',
@@ -14,21 +14,10 @@ const today = new Date().toLocaleDateString('en-US', {
   <SideNav />
 
   <main class="max-w-4xl mx-auto px-6 pt-24 pb-32">
-    <header class="mb-16">
-      <h1 class="font-display font-bold text-fluid-2xl text-surface-50 mb-3">
-        Guess the Movie
-      </h1>
+    <header class="mb-12 text-center">
       <p class="text-surface-500 text-sm font-display">{today}</p>
     </header>
 
-    <div class="rounded-lg border border-surface-800 bg-surface-900/50 p-12 text-center">
-      <p class="text-surface-400 text-fluid-base mb-4">🎬</p>
-      <p class="text-surface-400">
-        Daily puzzle coming soon.
-      </p>
-      <p class="text-surface-600 text-sm mt-2">
-        Pixelated posters. Five guesses. Same for everyone.
-      </p>
-    </div>
+    <GuessTabs client:load />
   </main>
 </Layout>

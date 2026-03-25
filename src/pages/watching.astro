@@ -23,9 +23,7 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=1800, stale-while-
 
   <div class="min-h-screen flex flex-col items-center justify-center">
     <header class="w-full max-w-6xl px-6 pt-8 pb-6 flex items-baseline justify-between">
-      <h1 class="font-display font-bold text-fluid-md text-surface-50">
-        what i watched recently
-      </h1>
+      <h1 class="font-display font-bold text-fluid-md text-surface-50">what i watched recently</h1>
       <a
         href={`https://letterboxd.com/${username}/`}
         class="text-surface-600 hover:text-accent text-sm font-display tracking-wide transition-colors duration-300"
@@ -36,42 +34,46 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=1800, stale-while-
       </a>
     </header>
 
-    {error ? (
-      <div class="px-6 text-ember text-sm">{error}</div>
-    ) : (
-      <div class="w-full max-w-6xl overflow-x-auto overflow-y-hidden scrollbar-hide px-6">
-        <div class="flex gap-3 pb-8 h-[45vh] items-stretch">
-          {films.map((film, i) => (
-            <a
-              href={film.filmPageUrl}
-              target="_blank"
-              rel="noopener"
-              class="group flex-shrink-0 relative opacity-0 animate-fade-in"
-              style={`animation-delay: ${Math.min(i * 40, 500)}ms;`}
-            >
-              {film.posterUrl ? (
-                <img
-                  src={film.posterUrl}
-                  alt={`${film.title} (${film.year})`}
-                  loading={i < 8 ? 'eager' : 'lazy'}
-                  class="h-full w-auto rounded-lg object-cover shadow-lg shadow-surface-950/60 group-hover:shadow-xl group-hover:shadow-accent/15 group-hover:scale-[1.02] transition-all duration-300 ease-out"
-                />
-              ) : (
-                <div class="h-full aspect-[2/3] rounded-lg bg-surface-800 flex items-center justify-center text-surface-600 text-4xl">
-                  🎬
-                </div>
-              )}
-              {film.rating !== null && (
-                <span class="absolute bottom-2 left-2 text-xs font-display font-medium text-white/60 bg-black/40 px-1.5 py-0.5 rounded">
-                  {film.rating}/5
-                </span>
-              )}
-            </a>
-          ))}
-        </div>
-      </div>
-      <p class="text-surface-600 text-xs font-display mt-1 px-6">← scroll →</p>
-    )}
+    {
+      error ? (
+        <div class="px-6 text-ember text-sm">{error}</div>
+      ) : (
+        <>
+          <div class="w-full max-w-6xl overflow-x-auto overflow-y-hidden scrollbar-hide px-6">
+            <div class="flex gap-3 pb-8 h-[45vh] items-stretch">
+              {films.map((film, i) => (
+                <a
+                  href={film.filmPageUrl}
+                  target="_blank"
+                  rel="noopener"
+                  class="group flex-shrink-0 relative opacity-0 animate-fade-in"
+                  style={`animation-delay: ${Math.min(i * 40, 500)}ms;`}
+                >
+                  {film.posterUrl ? (
+                    <img
+                      src={film.posterUrl}
+                      alt={`${film.title} (${film.year})`}
+                      loading={i < 8 ? 'eager' : 'lazy'}
+                      class="h-full w-auto rounded-lg object-cover shadow-lg shadow-surface-950/60 group-hover:shadow-xl group-hover:shadow-accent/15 group-hover:scale-[1.02] transition-all duration-300 ease-out"
+                    />
+                  ) : (
+                    <div class="h-full aspect-[2/3] rounded-lg bg-surface-800 flex items-center justify-center text-surface-600 text-4xl">
+                      🎬
+                    </div>
+                  )}
+                  {film.rating !== null && (
+                    <span class="absolute bottom-2 left-2 text-xs font-display font-medium text-white/60 bg-black/40 px-1.5 py-0.5 rounded">
+                      {film.rating}/5
+                    </span>
+                  )}
+                </a>
+              ))}
+            </div>
+          </div>
+          <p class="text-surface-600 text-xs font-display mt-1 px-6">← scroll →</p>
+        </>
+      )
+    }
   </div>
 </Layout>
 
