@@ -24,10 +24,10 @@ module.exports = {
           950: '#0d0c0b',  // warm near-black (never pure #000)
         },
         accent: {
-          DEFAULT: '#e07a2f', // warm amber — cinema marquee
-          light: '#f0993f',
-          dark: '#c46820',
-          muted: '#b8885c',
+          DEFAULT: '#e63946', // warm red — cinema curtain
+          light: '#ef5461',
+          dark: '#cc2f3c',
+          muted: '#b86666',
         },
         ember: {
           DEFAULT: '#d4553a',

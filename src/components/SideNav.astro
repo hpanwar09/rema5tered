@@ -1,42 +1,77 @@
 ---
-const links = [
+const leftLinks = [
   { href: '/recommend', label: 'what should i watch?' },
-  { href: '/guess', label: 'guess the movie' },
-  { href: '/watching', label: 'my recent watches' },
-  { href: '/about', label: 'about me' },
+  { href: '/guess', label: 'guess this movie' },
 ];
+const rightLinks = [{ href: '/watching', label: 'my watch history' }];
 ---
 
 <nav class="fixed top-0 left-0 z-10 px-8 pt-10 pb-8" transition:persist id="side-nav">
   <ul class="space-y-5">
     <li class="mb-3">
-      <a href="/" data-nav-link class="font-display text-sm font-semibold transition-colors duration-300 text-surface-300 hover:text-accent">
+      <a
+        href="/"
+        data-nav-link
+        class="font-display text-sm font-semibold transition-colors duration-300 text-surface-300 hover:text-accent"
+      >
         home
       </a>
     </li>
-    {links.map((link) => (
-      <li>
-        <a href={link.href} data-nav-link class="font-display text-sm transition-colors duration-300 text-surface-400 hover:text-accent">
-          {link.label}
-        </a>
-      </li>
-    ))}
+    {
+      leftLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            data-nav-link
+            class="font-display text-sm transition-colors duration-300 text-surface-400 hover:text-accent"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<nav class="fixed top-0 right-0 z-10 px-8 pt-10 pb-8 text-right" transition:persist id="side-nav-right">
+  <ul class="space-y-5">
+    <li class="mb-3">
+      <a
+        href="/about"
+        data-nav-link
+        class="font-display text-sm font-semibold transition-colors duration-300 text-surface-300 hover:text-accent"
+      >
+        about me
+      </a>
+    </li>
+    {
+      rightLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            data-nav-link
+            class="font-display text-sm transition-colors duration-300 text-surface-400 hover:text-accent"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </nav>
 
 <script>
   function updateActiveLink() {
     const path = window.location.pathname;
-    document.querySelectorAll('#side-nav [data-nav-link]').forEach((link) => {
+    document.querySelectorAll('#side-nav [data-nav-link], #side-nav-right [data-nav-link]').forEach((link) => {
       const href = link.getAttribute('href') ?? '';
       const isActive = path === href || (href !== '/' && path.startsWith(href));
-      
+
       if (isActive) {
         link.classList.remove('text-surface-300', 'text-surface-400');
         link.classList.add('text-accent');
       } else {
         link.classList.remove('text-accent');
-        // home link gets lighter color
         if (href === '/') {
           link.classList.add('text-surface-300');
         } else {
@@ -46,9 +81,7 @@ const links = [
     });
   }
 
-  // Run on initial load
   updateActiveLink();
 
-  // Run after each View Transition navigation
   document.addEventListener('astro:after-swap', updateActiveLink);
 </script>

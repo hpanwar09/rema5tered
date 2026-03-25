@@ -1,31 +1,25 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import SideNav from "../components/SideNav.astro";
+import Layout from '../layouts/Layout.astro';
+import SideNav from '../components/SideNav.astro';
 ---
 
 <Layout title="what should i watch?">
-    {/* Full-screen background image with dark overlay */}
-    <div class="fixed inset-0 -z-10">
-        <img src="/hero-bg.jpg" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-surface-950/90"></div>
-    </div>
+  <div class="fixed inset-0 -z-10">
+    <img src="/hero-bg.jpg" alt="" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-surface-950/90"></div>
+  </div>
 
-    <SideNav />
+  <SideNav />
 
-    {/* Quote — centered on page */}
   <main class="min-h-screen flex items-center justify-center px-6 pt-24">
-        <div class="max-w-2xl">
-            <blockquote
-                class="font-display font-medium text-fluid-xl leading-relaxed text-surface-300 italic opacity-0 animate-slide-up"
-                style="animation-delay: 500ms;"
-            >
-                so do you want to take a leap of faith or become an old man
-                filled with regrets...waiting to die alone?
-                <span
-                    class="block text-right text-sm text-surface-500 mt-4 not-italic"
-                    >— Inception, 2010</span
-                >
-            </blockquote>
-        </div>
-    </main>
+    <div class="max-w-2xl">
+      <blockquote
+        class="font-display font-medium text-fluid-xl leading-relaxed text-surface-300 italic opacity-0 animate-slide-up"
+        style="animation-delay: 500ms;"
+      >
+        so do you want to take a leap of faith or become an old man filled with regrets...waiting to die alone?
+        <span class="block text-right text-sm text-surface-500 mt-4 not-italic">— Inception, 2010</span>
+      </blockquote>
+    </div>
+  </main>
 </Layout>

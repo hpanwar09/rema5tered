@@ -17,9 +17,7 @@ export interface LetterboxdFilm {
  * Returns ~50 most recent watches.
  * Runs server-side only — never in browser.
  */
-export async function fetchLetterboxdFeed(
-  username: string
-): Promise<LetterboxdFilm[]> {
+export async function fetchLetterboxdFeed(username: string): Promise<LetterboxdFilm[]> {
   const url = `https://letterboxd.com/${username}/rss/`;
 
   const res = await fetch(url, {
